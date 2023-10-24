@@ -1,0 +1,58 @@
+<div class="d-flex justify-content-between flex-wrap flex-md nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2"><%= record.day  %> <%= record.month  %></h1>
+  <div class="btn-toolbar mb-2 mb-md 0">
+    <div class="btn-group me-2">
+    </div>
+  </div>
+</div>
+
+<div class="col py-3">
+
+  <div class="row">
+    <div class="col">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">สมุดบันทึก</a></li>
+          <li class="breadcrumb-item active"><%= record.firstName  %></li>
+        </ol>
+      </nav>
+    </div>
+    <div class="col text-end fw-lighter">
+      <b>Last Updated <%= new Date(record.updatedAt).toUTCString() %> </b>
+      <b>UserId:</b> <%= record._id %>
+    </div>
+  </div>
+
+</div>
+
+<ul class="list-group">
+
+  <li class="list-group-item"> 
+    <div class="row">
+      <div class="col" style="max-width: 140px"> <b>ชื่อรายการ:</b></div>
+      <div class="col"><%= record.day %> <%= record.month %> <%= record.year %></div>
+    </div>
+  </li>
+
+  <li class="list-group-item"> 
+    <div class="row">
+      <div class="col" style="max-width: 140px"> <b>ลายละเอียด:</b></div>
+      <div class="col"><%= record.details %></div>
+    </div>
+  </li>
+
+  <li class="list-group-item"> 
+    <div class="row">
+      <div class="col" style="max-width: 140px"> <b>วันที่สร้าง:</b></div>
+      <div class="col"><%= record.createdAt %></div>
+    </div>
+  </li>
+
+  <li class="list-group-item"> 
+    <div class="row">
+      <div class="col" style="max-width: 140px"> <b>วันที่แก้ไข:</b></div>
+      <div class="col"><%= record.updatedAt %></div>
+    </div>
+  </li>
+
+</ul>

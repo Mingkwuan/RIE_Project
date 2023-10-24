@@ -1,0 +1,90 @@
+<div class="d-flex justify-content-between flex-wrap flex-md nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2">Editing: <%= record.day %> <%= record.month %></h1>
+  <div class="btn-toolbar mb-2 mb-md 0">
+    <div class="btn-group me-2">
+    </div>
+  </div>
+</div>
+
+<div class="col py-3">
+  <div class="row">
+    <div class="col">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">สมุดบันทึก</a></li>
+          <li class="breadcrumb-item active"><%= record.firstName %> <%= record.lastName %> <%= record.email %></li>
+        </ol>
+      </nav>
+    </div>
+    <div class="col text-end fw-lighter">
+      <b>Last Updated: <%= new Date(record.updatedAt).toUTCString()  %></b>
+      <b>UserId:</b> <%= record._id %>
+    </div>
+  </div>
+
+</div>
+
+
+<form action="/edit/<%= record._id %>?_method=PUT" method="POST">
+
+  <div class="row form-group mb-4">
+    <div class="col">
+      <label for="day">วันที่</label>
+      <input type="text" class="form-control" id="day" name="day" value="" placeholder="วันที่" required>
+    </div>
+
+    <div class="col">
+      <label for="month">เดือน</label>
+      <input type="text" class="form-control" id="month" name="month" value="" placeholder="เดือน" required>
+    </div>
+  </div>
+  
+  <div class="row form-group mb-4">
+    <div class="col">
+      <label for="year">ปี</label>
+      <input type="text" class="form-control" id="year" name="year" value="" placeholder="ปี" required>
+    </div>
+    
+    <div class="col">
+      <label for="01"></label>
+    </div>
+  </div>
+
+  <div class="form-group mb-4">
+    <label for="details">รายรับ-รายจ่าย</label>
+    <textarea class="form-control" name="details" id="details" cols="30" rows="12" placeholder="รายละเอียด"></textarea>
+</div>
+
+  <div class="form-group mb-4">
+    <button type="submit" class="btn btn-primary">อัปเดตบันทึก</button>
+
+    <button type="button" class="btn btn-danger" data-bs-toggle="modal" id="deleteButton" data-bs-target="#deleteModal">ลบบันทึก</button>
+
+  </div>
+
+</form>
+
+
+
+<div class="modal fade" tabindex="-1" role="dialog" id="deleteModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">คุณกำลังจะลบบันทึก</div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>
+          การดำเนินการนี้จะลบรายการบันทึกของ <b class="fw-bold"><%= record.firstName %> <%= record.lastName %></b><br/>
+          คุณแน่ใจหรือไม่?
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+        <form action="/edit/<%= record._id %>?_method=DELETE" method="POST" class="position-relative">
+          <button type="submit" class="btn btn-primary">ยืนยันการลบรายการ!</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
